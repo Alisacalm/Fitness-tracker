@@ -128,10 +128,12 @@ def read_package(workout_type: str, data: List[int]) -> Training:
         return (training_type[workout_type](*data))
     raise ValueError("Неизвестный тип тренировки.")
 
+
 def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
     print(info.get_message())
+
 
 if __name__ == '__main__':
     packages: Sequence[Tuple[str, List[int]]] = [('SWM', [720, 1, 80, 25, 40]),
