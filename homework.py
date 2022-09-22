@@ -45,7 +45,8 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        raise NotImplementedError('В дочернем классе должен быть определен метод get_spent_calories')
+        raise NotImplementedError('В дочернем классе должен быть определен ' 
+                                  'метод get_spent_calories.')
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -84,7 +85,8 @@ class SportsWalking(Training):
     def get_spent_calories(self) -> float:
         return ((self.WEIGHT_MULTIPLIER_CALORY * self.weight_kg
                  + (self.get_mean_speed()**2
-                    // self.height_cm) * self.SPEED_CALORY_MULTIPLIER * self.weight_kg)
+                    // self.height_cm) * self.SPEED_CALORY_MULTIPLIER 
+                 * self.weight_kg)
                 * (self.duration_hrs * self.MIN_IN_HR))
 
 
@@ -121,7 +123,8 @@ def read_package(workout_type: str, data: Union[int, float]) -> Training:
                                                 }
     if workout_type in training_type:
         return (training_type[workout_type](*data))
-    raise ValueError(f"Неизвестный тип тренировки:{workout_type}. Доступны следующие типы тренировок:{training_type}.")
+    raise ValueError(f'Неизвестный тип тренировки:{workout_type}. '
+                      'Доступны следующие типы тренировок:{training_type}.')
 
 
 def main(training: Training) -> None:
@@ -132,9 +135,9 @@ def main(training: Training) -> None:
 
 if __name__ == '__main__':
     packages: Sequence[Tuple[str, Union[int, float]]] = [('SWM', [720, 1, 80, 25, 40]),
-                                                 ('RUN', [15000, 1, 75]),
-                                                 ('WLK', [9000, 1, 75, 180]),
-                                                 ]
+                                                         ('RUN', [15000, 1, 75]),
+                                                         ('WLK', [9000, 1, 75, 180]),
+                                                         ]
 
     for workout_type, data in packages:
         training = read_package(workout_type, data)
